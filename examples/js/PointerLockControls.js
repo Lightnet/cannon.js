@@ -160,8 +160,11 @@
         }
 
         // Convert velocity to world coordinates
-        quat.setFromEuler({x:pitchObject.rotation.x, y:yawObject.rotation.y, z:0},"XYZ");
-        quat.multiplyVector3(inputVelocity);
+        //quat.setFromEuler({x:pitchObject.rotation.x, y:yawObject.rotation.y, z:0},"XYZ");
+        quat.setFromEuler( new THREE.Euler(pitchObject.rotation.x, yawObject.rotation.y, 0 ,"XYZ"));
+        //quat.multiplyVector3(inputVelocity);
+        
+        inputVelocity.applyQuaternion( quat );
 
         // Add to the object
         velocity.x += inputVelocity.x;
